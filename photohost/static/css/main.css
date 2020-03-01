@@ -45,7 +45,7 @@ body {
     cursor: pointer;
 }
 #preview {
-    padding: 16px 0px 16px 0px;
+    padding: 16px 0px;
     width: 100%;
     height: auto;
 }
@@ -57,7 +57,7 @@ body {
 }
 #top-logo {
     height: 56px;
-    padding: 8px 0px 8px 0px;
+    padding: 8px 0px;
     width: auto;
 }
 #top-wrapper {
