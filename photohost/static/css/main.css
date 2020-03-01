@@ -2,6 +2,11 @@ body {
     font-family: fira-sans, Helvetica, Arial, sans-serif;
 }
 
+.button {
+    font-family: fira-sans, Helvetica, Arial, sans-serif;
+    background-color: #000;
+}
+
 .wrapper {
     margin: auto;
     height: 100%;
