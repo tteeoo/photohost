@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>photohost</title>
+{% endblock %}
+
+{% block body %}
+
+<h2>URL: <a href="https://photohost.tech/image/{{ image }}">https://photohost.tech/image/{{ image }}</a>
+<img src="/image/{{ image }}" alt="Hosted image"></img>
+
+{% endblock %}
