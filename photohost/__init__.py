@@ -23,9 +23,13 @@ def index():
         if allowed_file(file.filename) == False:
             return "Invalid file type"
         if file:
-            filesplit = file.filename.split(".")
-            filename = sha256(secure_filename(filesplit[0]).encode("utf8")).hexdigest() + "." + filesplit[1]
-            file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+            tmpname = os.path.join("/home/theo/test/tmp", file.filename)
+            extension = "." + file.filename.split(".")[1]
+            file.save(tmpname)
+            with open(tmpname, "rb") as f:
+                filename = sha256(f.read()).hexdigest() + extension
+            os.rename(tmpname, os.path.join(app.config["UPLOAD_FOLDER"], filename))
+                
             return filename
         else:
             return "An unknown error occurred"
