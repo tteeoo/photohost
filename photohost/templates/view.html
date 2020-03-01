@@ -6,7 +6,9 @@
 
 {% block body %}
 
-<h2>URL: <a href="https://photohost.tech/image/{{ image }}">https://photohost.tech/image/{{ image }}</a>
-<img src="/image/{{ image }}" alt="Hosted image"></img>
+<div class="wrapper">
+    <h2>URL: <a href="https://photohost.tech/image/{{ image }}">https://photohost.tech/image/{{ image }}</a></h2>
+    <img src="/image/{{ image }}" id="preview" alt="Hosted image"></img>
+</div>
 
 {% endblock %}
