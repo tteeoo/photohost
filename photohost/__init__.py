@@ -1,5 +1,6 @@
 import os
-from flask import Flask, render_template, url_for, request, flash, redirect
+from hashlib import sha256
+from flask import Flask, render_template, url_for, request, flash, redirect, abort, send_from_directory
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__, static_folder="static")
@@ -18,15 +19,21 @@ def index():
             return "No file uploaded"
         file = request.files["file"]
         if file.filename == "":
-            alert("No selected file")
             return "No selected file"
         if allowed_file(file.filename) == False:
             return "Invalid file type"
         if file:
-            filename = secure_filename(file.filename)
+            filesplit = file.filename.split(".")
+            filename = sha256(secure_filename(filesplit[0]).encode("utf8")).hexdigest() + "." + filesplit[1]
             file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
-            return "Success"
+            return filename
         else:
             return "An unknown error occurred"
     return render_template("index.html")
 
+@app.route("/<image>")
+def view(image):
+    try:
+        return send_from_directory("/home/theo/test/", filename=image)
+    except FileNotFoundError:
+        abort(404)
