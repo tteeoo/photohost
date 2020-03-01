@@ -1,3 +1,9 @@
-p {
-    margin: auto;
+body {
+    font-family: fira-sans, Helvetica, Arial, sans-serif;
+}
+
+@font-face {
+    font-family: fira-sans;
+    src:  url('/static/fonts/FiraSans-Regular.woff2') format('woff2'),
+          url('/static/fonts/FiraSans-Regular.woff') format('woff');
 }
