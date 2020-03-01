@@ -30,7 +30,7 @@ def index():
             with open(tmpname, "rb") as f:
                 filename = sha256(f.read()).hexdigest() + extension
             os.rename(tmpname, os.path.join(app.config["UPLOAD_FOLDER"], filename))
-            url = "https://photohost.tech/view" + filename
+            url = "https://photohost.tech/view/" + filename
                 
             return redirect(url)
         else:
