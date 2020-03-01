@@ -1,7 +1,7 @@
 import os
 from hashlib import sha256
 from flask import Flask, render_template, url_for, request, flash, redirect, abort, send_from_directory
-from werkzeug.utils import secure_filename
+from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__, static_folder="static")
 app.config["UPLOAD_FOLDER"] = "/home/theo/test"
@@ -11,7 +11,7 @@ app.secret_key = os.urandom(16)
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in \
-            ["png", "jpg", "jpeg", "gif", "ico", "tif"]
+            ["png", "jpg", "jpeg", "gif", "ico", "tif", "svg"]
 
 @app.route("/", methods=["POST", "GET"])
 def index():
@@ -22,7 +22,7 @@ def index():
         if file.filename == "":
             return redirect(request.url)
         if allowed_file(file.filename) == False:
-            return "Invalid file type"
+            return render_template("error.html", errno="Error: Invalid file type, please upload an image.")
         if file:
             tmpname = os.path.join("/home/theo/test/tmp", file.filename)
             extension = "." + file.filename.split(".")[1]
@@ -34,13 +34,23 @@ def index():
                 
             return redirect(url)
         else:
-            return "An unknown error occurred"
+            return render_template("error.html", errno="An unkown error occurred.")
     return render_template("index.html")
 
 @app.route("/image/<filename>")
 def return_image(filename):
-    return send_from_directory("/home/theo/test/", filename, as_attachment=True)
+    return send_from_directory("/home/theo/test/", filename, as_attachment=False)
 
 @app.route("/view/<image>")
 def view(image):
     return render_template("view.html", image=image)
+
+@app.errorhandler(Exception)
+def error(e):                                    
+    code = 500
+    if isinstance(e, HTTPException):
+        code = e.code
+    return render_template("error.html", errno="HTTP Error: "+str(code))
+
+if __name__ == "__main__":
+    app.run(debug=True)
