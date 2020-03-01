@@ -4,7 +4,7 @@ from flask import Flask, render_template, url_for, request, flash, redirect, abo
 from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__, static_folder="static")
-app.config["UPLOAD_FOLDER"] = "/home/theo/test"
+app.config["UPLOAD_FOLDER"] = "/media/drive/uploads"
 app.config["MAX_CONTENT_LENGTH"] = 32 * 1024 * 1024
 app.secret_key = os.urandom(16)
 
@@ -24,7 +24,7 @@ def index():
         if allowed_file(file.filename) == False:
             return render_template("error.html", errno="Error: Invalid file type, please upload an image.")
         if file:
-            tmpname = os.path.join("/home/theo/test/tmp", file.filename)
+            tmpname = os.path.join(app.config["UPLOAD_FOLDER"]+"/tmp", file.filename)
             extension = "." + file.filename.split(".")[1]
             file.save(tmpname)
             with open(tmpname, "rb") as f:
@@ -39,7 +39,7 @@ def index():
 
 @app.route("/image/<filename>")
 def return_image(filename):
-    return send_from_directory("/home/theo/test/", filename, as_attachment=False)
+    return send_from_directory(app.config["UPLOAD_FOLDER"], filename, as_attachment=False)
 
 @app.route("/view/<image>")
 def view(image):
