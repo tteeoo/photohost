@@ -5,14 +5,17 @@
 {% endblock %}
 
 {% block body %}
-
 <div class="wrapper">
     <h1>Welcome to photohost!</h1>
     <h3>An open source image hosting site.</h3>
-    <form method=post enctype=multipart/form-data>
-	<input type=file name=file class=button>
-	<input type=submit value=Upload class=button>
+    <form method="post" enctype="multipart/form-data">
+	<div class="upload-btn-wrapper">
+	    <input type="file" name="file" id="up" onChange="img_pathUrl(this);">
+	    <button class="btn">Browse</button>
+	</div>
+	<input type="submit" class="btn" value="Upload">
     </form>
+    <img id="preview" src="#" alt="f">
 </div>
 
 {% endblock %}
