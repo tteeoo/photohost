@@ -6,6 +6,13 @@
 
 {% block body %}
 
-<p>Working!</p>
+<div class="wrapper">
+    <h1>Welcome to photohost!</h1>
+    <h3>An open source image hosting site.</h3>
+    <form method=post enctype=multipart/form-data>
+	<input type=file name=file>
+	<input type=submit value=Upload>
+    </form>
+</div>
 
 {% endblock %}

@@ -2,6 +2,12 @@ body {
     font-family: fira-sans, Helvetica, Arial, sans-serif;
 }
 
+.wrapper {
+    margin: auto;
+    height: 100%;
+    width: 40%;
+}
+
 @font-face {
     font-family: fira-sans;
     src:  url('/static/fonts/FiraSans-Regular.woff2') format('woff2'),
