@@ -1,7 +1,8 @@
 import os
 from hashlib import sha256
 from flask import Flask, render_template, url_for, request, flash, redirect, abort, send_from_directory
-from werkzeug.exceptions import HTTPException, secure_filename
+from werkzeug.exceptions import HTTPException
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__, static_folder="static")
 app.config["UPLOAD_FOLDER"] = "/media/drive/uploads"
