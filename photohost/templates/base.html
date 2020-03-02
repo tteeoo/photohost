@@ -7,7 +7,7 @@
     <meta name="author" content="Theo Henson">
     <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}"> 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="/static/js/main.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
     {% block head %}{% endblock %}
 </head>
 <body>

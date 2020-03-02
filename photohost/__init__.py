@@ -46,8 +46,13 @@ def return_image(filename):
 def view(image):
     return render_template("view.html", image=image)
 
+@app.route('/robots.txt')
+@app.route('/sitemap.xml')
+def static_from_root():
+    return send_from_directory(app.static_folder, request.path[1:])
+
 @app.errorhandler(Exception)
-def error(e):                                    
+def error(e):
     code = 500
     if isinstance(e, HTTPException):
         code = e.code
