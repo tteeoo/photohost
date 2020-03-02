@@ -22,6 +22,8 @@ A `/view/` path will fetch the image, but also embed it in html, and tell you th
 
 Since you can only upload images, the filenames are changed, and images are fetched from a specific directory, the site (should be) immune to any sort of filesystem injection.
 
+jQuery is used for the image previews when you select an image for uploading.
+
 # License
 
 All files (that make up photohost, *not* uploaded content) are licensed under the MIT License.
