@@ -53,11 +53,11 @@ body {
     background-color: #77b;
     height: auto;
     width: 100%;
-    border-bottom: 4px solid #6b6bcb;
+    border-bottom: 4px solid #6767c7;
 }
 #top-logo {
-    height: 56px;
-    padding: 8px 0px;
+    height: 48px;
+    padding-top: 6px;
     width: auto;
 }
 #top-wrapper {
