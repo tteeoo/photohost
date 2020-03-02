@@ -12,7 +12,7 @@ Only `.png`, `.jpeg`, `.jpg`, `.gif`, `.svg`, and `.tif` files can be uploaded.
 
 If you'd like to run this on your own, just be sure to change `app.config["UPLOAD_FOLDER"]` to where you'd like the files to be uploaded.
 
-Right now, the site is hosted at: https://photohost.tech
+https://photohost.tech
 
 # How it works
 
