@@ -36,10 +36,10 @@ body {
     font-size: 100px;
     position: absolute;
     left: 0;
-    top: -8px;
+    top: -10px;
     opacity: 0;
     width: 98px;
-    height: 38px;
+    height: 40px;
 }
 .upload-btn-wrapper input[type=file]:hover {
     cursor: pointer;
