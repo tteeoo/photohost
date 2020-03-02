@@ -1,7 +1,7 @@
 import os
 from hashlib import sha256
 from flask import Flask, render_template, url_for, request, flash, redirect, abort, send_from_directory
-from werkzeug.exceptions import HTTPException
+from werkzeug.exceptions import HTTPException, secure_filename
 
 app = Flask(__name__, static_folder="static")
 app.config["UPLOAD_FOLDER"] = "/media/drive/uploads"
@@ -24,7 +24,7 @@ def index():
         if allowed_file(file.filename) == False:
             return render_template("error.html", errno="Error: Invalid file type, please upload an image.")
         if file:
-            tmpname = os.path.join(app.config["UPLOAD_FOLDER"]+"/tmp", file.filename)
+            tmpname = os.path.join(app.config["UPLOAD_FOLDER"]+"/tmp", secure_filename(file.filename))
             extension = "." + file.filename.split(".")[1]
             file.save(tmpname)
             with open(tmpname, "rb") as f:
