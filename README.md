@@ -8,7 +8,7 @@ This site is hosted on a custom built home server running nginx, it uses a light
 
 Photohost is free to use, with a 32MB upload limit.
 
-Only `.png`, `.jpeg`, `.jpg`, `.gif`, `.svg`, and `.tif` files can be uploaded.
+Only `.png`, `.jpeg`, `.jpg`, `.gif`, `.svg`, `ico`, and `.tif` files can be uploaded.
 
 If you'd like to run this on your own, just be sure to change `app.config["UPLOAD_FOLDER"]` to where you'd like the files to be uploaded.
 
