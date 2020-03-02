@@ -12,6 +12,8 @@ Only `.png`, `.jpeg`, `.jpg`, `.gif`, `.svg`, and `.tif` files can be uploaded.
 
 If you'd like to run this on your own, just be sure to change `app.config["UPLOAD_FOLDER"]` to where you'd like the files to be uploaded.
 
+https://photohost.tech
+
 # How it works
 
 When you upload a file, the contents are hashed with sha256. This hash becomes the new filename, and it is saved to the server. 
@@ -21,6 +23,8 @@ When a `/image/` path is resolved, the text after the `/` will be treated as a f
 A `/view/` path will fetch the image, but also embed it in html, and tell you the image's URL.
 
 Since you can only upload images, the filenames are changed, and images are fetched from a specific directory, the site (should be) immune to any sort of filesystem injection.
+
+jQuery is used for the image previews when you select an image for uploading.
 
 # License
 
