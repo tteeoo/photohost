@@ -12,6 +12,8 @@ Only `.png`, `.jpeg`, `.jpg`, `.gif`, `.svg`, and `.tif` files can be uploaded.
 
 If you'd like to run this on your own, just be sure to change `app.config["UPLOAD_FOLDER"]` to where you'd like the files to be uploaded.
 
+Right now, the site is hosted at: https://photohost.tech
+
 # How it works
 
 When you upload a file, the contents are hashed with sha256. This hash becomes the new filename, and it is saved to the server. 
