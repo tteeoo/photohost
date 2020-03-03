@@ -10,13 +10,13 @@
     <h3>An open source image hosting site.</h3>
     <form method="post" enctype="multipart/form-data">
 	<span class="upload-btn-wrapper">
-	    <input type="file" name="file" id="up" onChange="img_pathUrl(this);">
+	    <input type="file" name="file" id="up" onChange="img_pathUrl(this);" multiple>
 	    <button class="btn">Browse</button>
 	</span>
 	<input type="submit" class="btn" value="Upload">
     </form>
     <img style="display:none" id="preview" src="#">
-    <p>Free, fast, and easy. Maximum file size is 32MB</p>
+    <p>Fast, free, and easy. Maximum file size is 32MB<br>Host multiple files by uploading a .zip with only image files at the root.</p>
     <hr>
     <h1>About</h1>
     <p>Photohost is a free and open source project by Theo Henson.<br>You can find it on <a href="https://github.com/tteeoo/photohost/">GitHub</a>.
