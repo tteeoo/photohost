@@ -49,6 +49,7 @@ def index():
                 zip.extractall(app.config["UPLOAD_FOLDER"]+"/tmp")
                 os.remove(tmpname)
                 os.rename(os.path.join(app.config["UPLOAD_FOLDER"]+"/tmp", file.filename.split(".")[0]+"/"), app.config["UPLOAD_FOLDER"]+foldername+"/")
+
                 url = "https://photohost.tech/multi" + foldername
                 
             return redirect(url)
