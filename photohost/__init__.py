@@ -38,17 +38,15 @@ def index():
                 url = "https://photohost.tech/view/" + filename
             else:
                 zip = zipfile.ZipFile(file)
-                for i in zip.namelist()[1:]:
-                    if allowed_file(i) == False:
-                        return render_template("error.html", errno="Error: Invalid file type inside zip archive, please only upload images.")
                 tmpname = os.path.join(app.config["UPLOAD_FOLDER"]+"/tmp", secure_filename(file.filename))
                 file.save(tmpname)
                 with open(tmpname, "rb") as f:
                     foldername = "/"+sha256(f.read()).hexdigest()
-                pathlib.Path(app.config["UPLOAD_FOLDER"]+foldername).mkdir(exist_ok=True)
-                zip.extractall(app.config["UPLOAD_FOLDER"]+"/tmp")
                 os.remove(tmpname)
-                os.rename(os.path.join(app.config["UPLOAD_FOLDER"]+"/tmp", file.filename.split(".")[0]+"/"), app.config["UPLOAD_FOLDER"]+foldername+"/")
+                pathlib.Path(app.config["UPLOAD_FOLDER"]+foldername).mkdir(exist_ok=True)
+                for i in zip.namelist():
+                    if allowed_file(i) and i.split(".")[1] != "zip":
+                        zip.extract(i,app.config["UPLOAD_FOLDER"]+foldername)
 
                 url = "https://photohost.tech/multi" + foldername
                 
@@ -82,12 +80,12 @@ def multi(folder):
 def static_from_root():
     return send_from_directory(app.static_folder, request.path[1:])
 
-@app.errorhandler(Exception)
-def error(e):
-    code = 500
-    if isinstance(e, HTTPException):
-        code = e.code
-    return render_template("error.html", errno="HTTP Error: "+str(code))
+#@app.errorhandler(Exception)
+#def error(e):
+    #code = 500
+    #if isinstance(e, HTTPException):
+        #code = e.code
+    #return render_template("error.html", errno="HTTP Error: "+str(code))
 
 if __name__ == "__main__":
     app.run(debug=True)
