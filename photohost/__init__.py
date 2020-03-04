@@ -80,12 +80,12 @@ def multi(folder):
 def static_from_root():
     return send_from_directory(app.static_folder, request.path[1:])
 
-#@app.errorhandler(Exception)
-#def error(e):
-    #code = 500
-    #if isinstance(e, HTTPException):
-        #code = e.code
-    #return render_template("error.html", errno="HTTP Error: "+str(code))
+@app.errorhandler(Exception)
+def error(e):
+    code = 500
+    if isinstance(e, HTTPException):
+        code = e.code
+    return render_template("error.html", errno="HTTP Error: "+str(code))
 
 if __name__ == "__main__":
     app.run(debug=True)
